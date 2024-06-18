@@ -51,8 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'barang';
 $route['barang/data_barang'] = 'barang/data_barang';
-$route['barang/ubah/(:any)'] = 'barang/ubah/$1';
-$route['barang/update'] = 'barang/update';
+$route['barang/ubah_barang/(:num)'] = 'barang/edit_barang/$1';
 $route['barang/hapus/(:num)'] = 'barang/hapus/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

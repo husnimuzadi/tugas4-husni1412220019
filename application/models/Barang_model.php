@@ -7,12 +7,15 @@ class Barang_model extends CI_Model {
         parent::__construct();
     }
     
-    public function get_all_barang()
-    {
-    $query = $this->db->get('barang');
-    return $query->result_array();
+    public function get_all_barang() {
+        $query = $this->db->get('barang');
+        return $query->result_array();
     }
-    // Method untuk mengambil data barang sesuai pencarian
+    
+    public function get_barang_count() {
+        return $this->db->count_all('barang');
+    }
+    
     public function search_data_barang($keyword) {
         $this->db->like('ID_Barang', $keyword)
                  ->or_like('Kode_Barang', $keyword)
@@ -31,15 +34,20 @@ class Barang_model extends CI_Model {
         $query = $this->db->get_where('barang', array('ID_Barang' => $id_barang));
         return $query->row_array();
     }
-
-    public function update_barang($id_barang, $data) {
-        $this->db->where('ID_Barang', $id_barang);
-        $this->db->update('barang', $data);
+    
+    public function tambah_barang($data) {
+        return $this->db->insert('barang', $data);
     }
 
-    public function delete_barang($id_barang) {
+    public function hapus_barang($id_barang) {
         $this->db->where('ID_Barang', $id_barang);
-        $this->db->delete('barang');
+        return $this->db->delete('barang');
     }
     
+    public function edit_barang($id_barang, $data)
+{
+    $this->db->where('ID_Barang', $id_barang);
+    return $this->db->update('barang', $data);
+}
+
 }
